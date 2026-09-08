@@ -7,21 +7,34 @@
   <meta name="description" content="Estrategia de segmentación de audiencias digitales y gestión de CRM en Mailchimp para UrbanSitter. Caso de estudio por Valentina Ramirez Lozano, Pontificia Universidad Javeriana Cali.">
   <meta name="author" content="Valentina Ramirez Lozano">
   
-  <!-- Professional Typography Stack (Outfit, Geist, DM Sans, Geist Mono) -->
+  <!-- Professional Editorial Typography Stack (Playfair Display, Bodoni Moda, DM Serif Display, Geist, DM Sans, Geist Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=DM+Serif+Display:ital@0;1&family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Prata&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons for Rich Visual Cues -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Tailwind CSS CDN for fluid utility grid -->
+  <!-- Tailwind CSS CDN for fluid utility grid with Editorial Serif Config -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Playfair Display"', '"Bodoni Moda"', '"DM Serif Display"', 'Georgia', 'serif'],
+            sans: ['"Geist"', '"DM Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', '"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
   
   <!-- Three.js CDN for 3D Pastel Ballpit Background -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body class="bg-base text-main antialiased selection:bg-teal-subtle selection:text-teal-rich">
 

@@ -43,8 +43,9 @@
   --shadow-lg: 0 12px 28px -4px rgba(18, 38, 48, 0.08), 0 4px 12px -2px rgba(18, 38, 48, 0.04);
   --shadow-xl: 0 20px 40px -8px rgba(18, 38, 48, 0.12);
 
-  /* Professional Typography System (Impeccable & Taste-Skill) */
-  --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  /* Professional Editorial Typography System (Beautiful Web Type / Playfair Display / Bodoni Moda) */
+  --font-display: 'Playfair Display', 'Bodoni Moda', 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-heading: 'Playfair Display', 'Bodoni Moda', 'DM Serif Display', Georgia, serif;
   --font-body: 'Geist', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Geist Mono', 'JetBrains Mono', 'SF Mono', monospace;
 
@@ -83,13 +84,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6, 
+.section-title, 
+.feature-title, 
+.segment-name, 
+.conclusion-title, 
+.font-display,
+.font-serif,
+.brand-title {
+  font-family: 'Playfair Display', 'Bodoni Moda', 'DM Serif Display', Georgia, serif !important;
+}
+
 .font-display {
-  font-family: var(--font-display);
-  letter-spacing: -0.025em;
+  font-family: 'Playfair Display', 'Bodoni Moda', 'DM Serif Display', Georgia, serif !important;
+  letter-spacing: -0.015em;
 }
 
 .font-mono {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono) !important;
   letter-spacing: -0.015em;
 }
 
@@ -516,8 +528,8 @@ body {
   font-size: clamp(28px, 4vw, 38px);
   font-weight: 800;
   color: var(--text-main);
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  letter-spacing: -0.015em;
+  line-height: 1.22;
 }
 
 .section-subtitle {
