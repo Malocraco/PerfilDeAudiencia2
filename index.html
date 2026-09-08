@@ -1065,13 +1065,17 @@
           <span class="text-muted hidden sm:inline">•</span>
           <span class="text-xs text-main font-semibold">Módulo 3: Plantilla Segmentación de Audiencias Digitales</span>
         </div>
-        <div class="flex flex-wrap items-center gap-5 text-xs text-secondary">
+        <div class="flex flex-wrap items-center gap-3 text-xs text-secondary">
           <span class="flex items-center gap-1.5"><i class="fa-regular fa-user text-teal-primary"></i><strong>Estudiante:</strong> Valentina Ramirez Lozano</span>
           <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar text-coral-primary"></i>7 de septiembre, 2026</span>
           <button id="btnOpenDocModalFooter" onclick="document.getElementById('btnOpenDocModal').click()" class="btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 cursor-pointer">
             <i class="fa-regular fa-file-lines text-teal-primary"></i>
-            <span>Ver Ficha Completa</span>
+            <span>Ver Ficha</span>
           </button>
+          <a href="M3_Segmentacion_Audiencias_Digitales_Valentina_Ramirez.pdf" download="M3_Segmentacion_Audiencias_Digitales_Valentina_Ramirez.pdf" target="_blank" class="btn-primary text-xs py-1.5 px-3 flex items-center gap-1.5 text-decoration-none">
+            <i class="fa-solid fa-download"></i>
+            <span>Descargar PDF</span>
+          </a>
         </div>
       </div>
 
@@ -1127,9 +1131,15 @@
             <p class="text-xs text-muted">Plantilla de Segmentación de Audiencias Digitales</p>
           </div>
         </div>
-        <button id="btnCloseDocModal" class="text-muted hover:text-main p-2 text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <div class="flex items-center gap-2">
+          <a href="M3_Segmentacion_Audiencias_Digitales_Valentina_Ramirez.pdf" download="M3_Segmentacion_Audiencias_Digitales_Valentina_Ramirez.pdf" target="_blank" class="btn-primary text-xs py-1.5 px-3 flex items-center gap-1.5 text-decoration-none" title="Descargar documento PDF oficial">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span class="hidden sm:inline">Descargar PDF</span>
+          </a>
+          <button id="btnCloseDocModal" class="text-muted hover:text-main p-2 text-lg" aria-label="Cerrar modal">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
       </div>
 
       <div class="modal-body p-6 overflow-y-auto space-y-6 text-sm text-secondary">
@@ -1171,11 +1181,18 @@
         </div>
       </div>
 
-      <div class="modal-footer p-4 border-t border-subtle bg-surface-raised flex items-center justify-between">
+      <div class="modal-footer p-4 border-t border-subtle bg-surface-raised flex flex-col sm:flex-row items-center justify-between gap-3">
         <span class="text-xs text-muted">Documento oficial de entrega • Javeriana Cali</span>
-        <button onclick="window.print()" class="btn-secondary text-xs py-2 px-4 flex items-center gap-2">
-          <i class="fa-solid fa-print"></i> Imprimir / Guardar PDF
-        </button>
+        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+          <button onclick="window.print()" class="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5" title="Imprimir o guardar vista">
+            <i class="fa-solid fa-print"></i>
+            <span>Imprimir</span>
+          </button>
+          <a href="M3_Segmentacion_Audiencias_Digitales_Valentina_Ramirez.pdf" download="M3_Segmentacion_Audiencias_Digitales_Valentina_Ramirez.pdf" target="_blank" class="btn-primary text-xs py-2 px-4 flex items-center gap-2 text-decoration-none shadow-sm hover:shadow">
+            <i class="fa-solid fa-download"></i>
+            <span>Descargar PDF Oficial</span>
+          </a>
+        </div>
       </div>
 
     </div>
