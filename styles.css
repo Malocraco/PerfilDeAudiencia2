@@ -932,15 +932,42 @@ h1, h2, h3, h4, h5, h6,
 .text-secondary { color: var(--text-secondary); }
 .text-muted { color: var(--text-muted); }
 .text-teal { color: var(--teal-primary); }
+.text-teal-primary { color: var(--teal-primary) !important; }
 .text-teal-rich { color: var(--teal-rich); }
 .bg-teal { background-color: var(--teal-primary); }
 .bg-teal-subtle { background-color: var(--teal-subtle); }
 .border-teal-border { border-color: var(--teal-border); }
+
 .text-coral { color: var(--coral-primary); }
+.text-coral-primary { color: var(--coral-primary) !important; }
 .text-coral-rich { color: var(--coral-rich); }
 .bg-coral { background-color: var(--coral-primary); }
 .bg-coral-subtle { background-color: var(--coral-subtle); }
 .border-coral-border { border-color: var(--coral-border); }
+
+.text-indigo-primary { color: var(--indigo-primary) !important; }
+.bg-indigo-primary { background-color: var(--indigo-primary); }
+.bg-indigo-subtle { background-color: var(--indigo-subtle); }
+
+.text-cyan-accent { color: var(--cyan-accent) !important; }
+
+/* UrbanSitter Iconic Pink Underline Highlight */
+.urbansitter-underline-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.urbansitter-underline-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--coral-primary);
+  border-radius: 9999px;
+  opacity: 0.85;
+}
 
 /* ==========================================================================
    INTERACTIVE SECTION AUDIO PLAYER (Impeccable UI Craft)
