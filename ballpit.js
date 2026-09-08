@@ -58,15 +58,15 @@
     cursorLight.position.set(0, 0, 6);
     scene.add(cursorLight);
 
-    // 3. Pastel Color Palette (UrbanSitter Theme)
+    // 3. Official UrbanSitter Color Palette for 3D Ballpit
     const pastelPalette = [
-      new THREE.Color('#7fe3dc'), // Pastel Teal
-      new THREE.Color('#ffb5a7'), // Pastel Coral
-      new THREE.Color('#fed99f'), // Pastel Gold / Amber
-      new THREE.Color('#d4cbf8'), // Pastel Lavender
-      new THREE.Color('#bbf2ea'), // Pastel Mint
-      new THREE.Color('#fec89a'), // Pastel Peach
-      new THREE.Color('#a0c4ff')  // Pastel Sky Blue
+      new THREE.Color('#007a87'), // UrbanSitter Deep Teal
+      new THREE.Color('#00b4d8'), // UrbanSitter Bright Aqua
+      new THREE.Color('#d4edf2'), // UrbanSitter Ice Mint
+      new THREE.Color('#ff6b6b'), // UrbanSitter Coral Pink
+      new THREE.Color('#4f46e5'), // UrbanSitter Royal Indigo Purple
+      new THREE.Color('#fcd34d'), // UrbanSitter Star Gold
+      new THREE.Color('#7fe3dc')  // UrbanSitter Mint Teal
     ];
 
     // 4. World Limits based on Camera View

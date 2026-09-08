@@ -4,44 +4,51 @@
    ========================================================================== */
 
 :root {
-  /* OKLCH Color Palette: Modern, vibrant and accessible */
-  --teal-primary: oklch(0.56 0.145 186);
-  --teal-rich: oklch(0.42 0.15 186);
-  --teal-subtle: oklch(0.95 0.035 186);
-  --teal-border: oklch(0.85 0.06 186);
+  /* Authentic UrbanSitter Brand Color Palette */
+  --teal-primary: #007a87;       /* Authentic UrbanSitter Deep Petrol Teal (Hero Background) */
+  --teal-rich: #005d68;          /* Darker Slate Teal (Search Card Background) */
+  --teal-subtle: #d4edf2;        /* Ice Mint / Soft Blue-Teal (Secondary Section Background) */
+  --teal-border: #9ed4de;        /* Light Ice Teal Border */
+  --teal-light: #eef8fa;         /* Very Light Aqua Tint */
 
-  --coral-primary: oklch(0.66 0.17 38);
-  --coral-rich: oklch(0.52 0.18 38);
-  --coral-subtle: oklch(0.96 0.03 38);
-  --coral-border: oklch(0.88 0.06 38);
+  --cyan-accent: #00b4d8;        /* Logo Dots / Bright Turquoise Aqua */
 
-  --amber-primary: oklch(0.75 0.16 75);
-  --amber-rich: oklch(0.58 0.16 75);
-  --amber-subtle: oklch(0.96 0.04 75);
+  --coral-primary: #ff6b6b;      /* UrbanSitter Highlight Underline & Coral Accent */
+  --coral-rich: #e65050;         /* Darker Coral */
+  --coral-subtle: #ffebee;       /* Soft Coral Tint */
+  --coral-border: #ffcdd2;       /* Coral Border */
 
-  --indigo-primary: oklch(0.58 0.16 270);
-  --indigo-subtle: oklch(0.95 0.03 270);
+  --indigo-primary: #4f46e5;     /* UrbanSitter Action / "Búsqueda" Royal Purple-Blue */
+  --indigo-rich: #4338ca;        /* Darker Royal Purple */
+  --indigo-subtle: #ede9fe;      /* Lavender / Soft Purple Tint */
+  --indigo-border: #c7d2fe;      /* Purple Border */
+
+  --amber-primary: #f59e0b;      /* Star / Badge Gold */
+  --amber-rich: #d97706;
+  --amber-subtle: #fef3c7;
 
   /* Backgrounds & Surfaces */
-  --bg-base: oklch(0.985 0.005 95);
-  --surface-base: oklch(1 0 0);
-  --surface-raised: oklch(0.97 0.008 95);
-  --surface-glass: oklch(1 0 0 / 0.85);
+  --bg-base: #f7fafb;            /* Clean Pearl Aqua Tint */
+  --surface-base: #ffffff;
+  --surface-raised: #eef7f9;     /* Ice Mint Surface */
+  --surface-dark-teal: #005d68;  /* Deep Teal Card Surface */
+  --surface-glass: rgba(255, 255, 255, 0.9);
 
   /* Text & Typography */
-  --text-main: oklch(0.18 0.02 240);
-  --text-secondary: oklch(0.42 0.025 240);
-  --text-muted: oklch(0.62 0.02 240);
+  --text-main: #14282f;          /* Deep Petrol Navy */
+  --text-secondary: #3d5a63;     /* Muted Petrol Slate */
+  --text-muted: #6b858e;         /* Light Petrol Slate */
+  --text-inverse: #ffffff;
 
   /* Borders & Dividers */
-  --border-subtle: oklch(0.90 0.008 95);
-  --border-medium: oklch(0.82 0.015 95);
+  --border-subtle: #e0edf0;
+  --border-medium: #c2dfe5;
 
   /* Shadows (Multi-layered subtle elevation) */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 12px 28px -4px rgba(18, 38, 48, 0.08), 0 4px 12px -2px rgba(18, 38, 48, 0.04);
-  --shadow-xl: 0 20px 40px -8px rgba(18, 38, 48, 0.12);
+  --shadow-sm: 0 1px 2px rgba(0, 122, 135, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 122, 135, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 12px 28px -4px rgba(0, 93, 104, 0.1), 0 4px 12px -2px rgba(0, 93, 104, 0.05);
+  --shadow-xl: 0 20px 40px -8px rgba(0, 93, 104, 0.16);
 
   /* Professional Editorial Typography System (Beautiful Web Type / Playfair Display / Bodoni Moda) */
   --font-display: 'Playfair Display', 'Bodoni Moda', 'DM Serif Display', Georgia, 'Times New Roman', serif;
@@ -732,7 +739,7 @@ h1, h2, h3, h4, h5, h6,
   padding: 10px;
   border-radius: 10px;
   background: var(--surface-raised);
-  color: var(--teal-rich);
+  color: var(--teal-primary);
   font-size: 12.5px;
   font-weight: 700;
   border: 1px solid var(--teal-border);
@@ -745,9 +752,10 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .btn-inspect-segment:hover {
-  background: var(--teal-primary);
+  background: var(--indigo-primary);
   color: #ffffff;
   border-color: transparent;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
 }
 
 .btn-inspect-segment:active {
