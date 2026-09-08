@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMailchimpSimulator();
   initAcademicModal();
   initMobileMenu();
+  initAudioPlayers();
 });
 
 /* ==========================================================================
@@ -388,5 +389,115 @@ function initMobileMenu() {
       mobileMenu.classList.add('hidden');
       btnToggle.innerHTML = '<i class="fa-solid fa-bars text-sm"></i>';
     });
+  });
+}
+
+/* ==========================================================================
+   6. SECTION AUDIO PLAYERS (VOICE NARRATION)
+   ========================================================================== */
+function initAudioPlayers() {
+  const playerCards = document.querySelectorAll('.audio-player-card');
+  if (!playerCards.length) return;
+
+  function formatTime(seconds) {
+    if (isNaN(seconds) || seconds === Infinity) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  }
+
+  playerCards.forEach(card => {
+    const audio = card.querySelector('.hidden-audio-element');
+    const playBtn = card.querySelector('.audio-play-btn');
+    const playIcon = card.querySelector('.play-icon');
+    const pauseIcon = card.querySelector('.pause-icon');
+    const timeDisplay = card.querySelector('.audio-time');
+    const trackContainer = card.querySelector('.audio-track-container');
+    const progressBar = card.querySelector('.audio-progress-bar');
+    const muteBtn = card.querySelector('.audio-mute-btn');
+
+    if (!audio || !playBtn) return;
+
+    function updatePlayState(isPlaying) {
+      if (isPlaying) {
+        card.classList.add('is-playing');
+        if (playIcon) playIcon.classList.add('hidden');
+        if (pauseIcon) pauseIcon.classList.remove('hidden');
+      } else {
+        card.classList.remove('is-playing');
+        if (playIcon) playIcon.classList.remove('hidden');
+        if (pauseIcon) pauseIcon.classList.add('hidden');
+      }
+    }
+
+    // Toggle Play/Pause
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        // Pause any other playing audio on the page
+        document.querySelectorAll('.hidden-audio-element').forEach(otherAudio => {
+          if (otherAudio !== audio && !otherAudio.paused) {
+            otherAudio.pause();
+          }
+        });
+        audio.play().catch(err => console.log('Audio playback waiting for user interaction:', err));
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', () => updatePlayState(true));
+    audio.addEventListener('pause', () => updatePlayState(false));
+    audio.addEventListener('ended', () => {
+      updatePlayState(false);
+      if (progressBar) progressBar.style.width = '0%';
+      if (timeDisplay && audio.duration) {
+        timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+      }
+    });
+
+    // Time update & Scrubber
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        if (progressBar) progressBar.style.width = `${percent}%`;
+        if (timeDisplay) {
+          timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+        }
+      }
+    });
+
+    // Loaded metadata to display total duration
+    audio.addEventListener('loadedmetadata', () => {
+      if (timeDisplay && audio.duration) {
+        timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+      }
+    });
+
+    // Handle audio duration if already loaded from cache
+    if (audio.readyState >= 1 && audio.duration && timeDisplay) {
+      timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+    }
+
+    // Scrubbing on track click
+    if (trackContainer) {
+      trackContainer.addEventListener('click', (e) => {
+        const rect = trackContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        if (audio.duration && width > 0) {
+          audio.currentTime = (clickX / width) * audio.duration;
+        }
+      });
+    }
+
+    // Mute toggle
+    if (muteBtn) {
+      muteBtn.addEventListener('click', () => {
+        audio.muted = !audio.muted;
+        muteBtn.innerHTML = audio.muted
+          ? '<i class="fa-solid fa-volume-xmark text-coral"></i>'
+          : '<i class="fa-solid fa-volume-high"></i>';
+      });
+    }
   });
 }
