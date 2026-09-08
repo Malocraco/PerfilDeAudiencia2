@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanSitter | Segmentación de Audiencias Digitales - Módulo 3</title>
+  <meta name="description" content="Estrategia de segmentación de audiencias digitales y gestión de CRM en Mailchimp para UrbanSitter. Caso de estudio por Valentina Ramirez Lozano, Pontificia Universidad Javeriana Cali.">
+  <meta name="author" content="Valentina Ramirez Lozano">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for Rich Visual Cues -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN for fluid utility grid -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Three.js CDN for 3D Pastel Ballpit Background -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body class="bg-base text-main antialiased selection:bg-teal-subtle selection:text-teal-rich">
+
+  <!-- Top Academic Notification Banner -->
+  <header class="academic-bar border-b border-subtle bg-surface-raised/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2.5 whitespace-nowrap">
+        <span class="badge-javeriana">
+          <i class="fa-solid fa-graduation-cap"></i> Pontificia Universidad Javeriana Cali
+        </span>
+        <span class="text-muted hidden md:inline">•</span>
+        <span class="text-secondary font-medium hidden md:inline">Módulo 3: Plantilla Segmentación de Audiencias Digitales</span>
+      </div>
+      <div class="flex items-center gap-4 text-secondary whitespace-nowrap">
+        <span><i class="fa-regular fa-user mr-1.5 text-teal"></i><strong>Estudiante:</strong> Valentina Ramirez Lozano</span>
+        <span class="hidden sm:inline"><i class="fa-regular fa-calendar mr-1.5 text-coral"></i>7 de septiembre, 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navigation Bar -->
+  <nav class="sticky top-0 z-50 glass-nav border-b border-subtle backdrop-blur-md bg-surface-base/95">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-3">
+      
+      <!-- Brand & Title Left Block -->
+      <a href="#hero" class="flex items-center gap-3 group flex-shrink-0 text-decoration-none">
+        <div class="brand-logo-container">
+          <span class="brand-u">U</span>
+          <span class="brand-dot"></span>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-main whitespace-nowrap">
+              UrbanSitter
+            </span>
+            <span class="badge-pill-brand whitespace-nowrap">Case Study</span>
+          </div>
+          <span class="text-[10px] text-muted tracking-wide font-semibold uppercase whitespace-nowrap hidden sm:block">Audience Intelligence & CRM</span>
+        </div>
+      </a>
+
+      <!-- Center Desktop Navigation Links (Pill Bar - Ultra Clean) -->
+      <div class="hidden xl:flex items-center gap-0.5 bg-surface-raised p-1 rounded-full border border-subtle flex-shrink-0">
+        <a href="#desafio" class="nav-link">Desafío</a>
+        <a href="#dimensiones" class="nav-link">4 Dimensiones</a>
+        <a href="#segmentos" class="nav-link">Segmentos</a>
+        <a href="#simulador" class="nav-link">Simulador Mailchimp</a>
+        <a href="#dataviz" class="nav-link">Data Viz</a>
+      </div>
+
+      <!-- Right Block Actions + Mobile Toggle -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <button id="btnOpenDocModal" class="btn-secondary text-xs sm:text-sm py-2 px-3 sm:px-3.5 flex items-center gap-1.5 whitespace-nowrap">
+          <i class="fa-regular fa-file-lines text-teal"></i>
+          <span class="hidden md:inline">Ficha Académica</span>
+          <span class="md:hidden">Ficha</span>
+        </button>
+        <a href="https://www.urbansitter.com" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs sm:text-sm py-2 px-3 sm:px-3.5 flex items-center gap-1.5 whitespace-nowrap hidden sm:inline-flex">
+          <span>UrbanSitter</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+        <!-- Mobile Menu Hamburger Button -->
+        <button id="btnMobileMenuToggle" class="xl:hidden p-2 rounded-xl text-secondary hover:text-main hover:bg-surface-raised border border-subtle flex items-center justify-center w-9 h-9" aria-label="Abrir menú de navegación">
+          <i class="fa-solid fa-bars text-sm"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Navigation Drawer -->
+    <div id="mobileMenu" class="hidden xl:hidden border-t border-subtle bg-surface-base px-4 pt-3 pb-5 space-y-2 shadow-lg animate-fadeIn">
+      <a href="#desafio" class="mobile-nav-item"><i class="fa-solid fa-triangle-exclamation text-teal mr-2 w-4"></i> Desafío Bilateral</a>
+      <a href="#dimensiones" class="mobile-nav-item"><i class="fa-solid fa-layer-group text-teal mr-2 w-4"></i> 4 Dimensiones de Segmentación</a>
+      <a href="#segmentos" class="mobile-nav-item"><i class="fa-solid fa-users text-teal mr-2 w-4"></i> Los 4 Segmentos Clave</a>
+      <a href="#simulador" class="mobile-nav-item"><i class="fa-solid fa-envelope-open-text text-amber-500 mr-2 w-4"></i> Simulador de Campañas Mailchimp</a>
+      <a href="#dataviz" class="mobile-nav-item"><i class="fa-solid fa-chart-pie text-coral mr-2 w-4"></i> Data Visualization & Benchmark</a>
+      <a href="#conclusiones" class="mobile-nav-item"><i class="fa-solid fa-circle-check text-emerald-600 mr-2 w-4"></i> Conclusiones Estratégicas</a>
+      <div class="pt-2 border-t border-subtle flex justify-between gap-2">
+        <a href="https://www.urbansitter.com" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2">
+          <span>Ir al sitio oficial de UrbanSitter</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32">
+      <!-- 3D Interactive Ballpit Canvas Background (React Bits) -->
+      <div class="ballpit-wrapper absolute inset-0 pointer-events-auto z-0 overflow-hidden">
+        <canvas id="ballpitCanvas"></canvas>
+      </div>
+
+      <!-- Ambient Glow Orbs -->
+      <div class="ambient-glow glow-teal -top-24 -left-24 pointer-events-none"></div>
+      <div class="ambient-glow glow-coral top-1/2 -right-24 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pointer-events-none">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Hero Content -->
+          <div class="lg:col-span-7 space-y-6 text-left pointer-events-auto">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-subtle text-teal-rich border border-teal-border text-xs font-semibold tracking-wide">
+              <span class="pulse-dot"></span>
+              Plataforma Digital de Cuidado Infantil • EE. UU.
+            </div>
+
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] text-main">
+              Segmentación Inteligente para un Ecosistema <span class="gradient-text">Bilateral</span>.
+            </h1>
+
+            <p class="text-base sm:text-lg text-secondary leading-relaxed max-w-2xl">
+              Estrategia de segmentación de audiencias y optimización en <strong>Mailchimp</strong> para conectar a padres de familia con niñeras de confianza de su red local, evitando el cruce de comunicaciones y maximizando la conversión de reservas.
+            </p>
+
+            <!-- Quick Perspective Switcher -->
+            <div class="p-4 rounded-2xl bg-surface-raised border border-subtle space-y-3">
+              <div class="flex items-center justify-between text-xs font-semibold text-muted uppercase tracking-wider">
+                <span>Perspectiva del Mercado Bilateral</span>
+                <span class="text-teal font-mono">2 Caras • 1 Base de Datos</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 p-1 bg-surface-base rounded-xl border border-subtle" id="heroAudienceToggle">
+                <button class="audience-tab active" data-target="padres">
+                  <i class="fa-solid fa-children mr-1.5 text-teal"></i>
+                  <span>Padres de Familia (Demanda)</span>
+                </button>
+                <button class="audience-tab" data-target="nineras">
+                  <i class="fa-solid fa-user-graduate mr-1.5 text-coral"></i>
+                  <span>Niñeras & Cuidadoras (Oferta)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Micro-Insight Card -->
+            <div id="heroInsightBox" class="insight-card transition-all duration-300">
+              <div class="flex items-start gap-3.5">
+                <div class="insight-icon-box bg-teal-subtle text-teal" id="heroInsightIcon">
+                  <i class="fa-solid fa-shield-heart text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-sm text-main" id="heroInsightTitle">Padres: Foco en Confianza y Velocidad</h4>
+                  <p class="text-xs sm:text-sm text-secondary mt-1" id="heroInsightText">
+                    Profesionales de 25-45 años que buscan soluciones inmediatas para el cuidado de sus hijos, valorando recomendaciones de amigos y procesos de reserva 100% móviles.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fast Stats Bar -->
+            <div class="grid grid-cols-3 gap-4 pt-2">
+              <div class="stat-card">
+                <span class="stat-number font-display">25-45</span>
+                <span class="stat-label">Edad Promedio Padres</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number font-display">18-30</span>
+                <span class="stat-label">Edad Jóvenes Cuidadoras</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number font-display">4 Claves</span>
+                <span class="stat-label">Segmentos Operativos</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Hero Visual: Interactive Live Architecture Card (with Electric Border) -->
+          <div class="lg:col-span-5 pointer-events-auto">
+            <div class="hero-interactive-card electric-card">
+              <div class="card-header-bar flex items-center justify-between pb-4 border-b border-subtle">
+                <div class="flex items-center gap-2">
+                  <span class="window-dot dot-red"></span>
+                  <span class="window-dot dot-yellow"></span>
+                  <span class="window-dot dot-green"></span>
+                  <span class="text-xs font-mono text-muted ml-2">urban-audience.crm.json</span>
+                </div>
+                <span class="badge-status-live"><i class="fa-solid fa-signal mr-1"></i> Mailchimp Sync</span>
+              </div>
+
+              <!-- Interactive Node Graphic -->
+              <div class="py-6 px-2 space-y-4">
+                <div class="crm-hub text-center">
+                  <div class="hub-badge"><i class="fa-solid fa-database mr-1.5 text-amber-500"></i> Base de Datos Unificada</div>
+                  <div class="hub-title font-mono text-xs text-muted">Audiencia Central UrbanSitter</div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 relative">
+                  <!-- Flow Lines Indicator -->
+                  <div class="flow-splitter"></div>
+
+                  <!-- Padres Node -->
+                  <div class="crm-node node-padres">
+                    <div class="node-icon bg-teal-subtle text-teal"><i class="fa-solid fa-house-chimney-user"></i></div>
+                    <div class="node-title">Segmento Padres</div>
+                    <div class="node-tag">Tag: <code>demanda_padres</code></div>
+                    <ul class="node-list">
+                      <li>✓ Recordatorios de reserva</li>
+                      <li>✓ Paquetes de lealtad</li>
+                      <li>✗ <em>Zero ofertas de empleo</em></li>
+                    </ul>
+                  </div>
+
+                  <!-- Niñeras Node -->
+                  <div class="crm-node node-nineras">
+                    <div class="node-icon bg-coral-subtle text-coral"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="node-title">Segmento Niñeras</div>
+                    <div class="node-tag">Tag: <code>oferta_nineras</code></div>
+                    <ul class="node-list">
+                      <li>✓ Oportunidades de trabajo</li>
+                      <li>✓ Badges e incentivos</li>
+                      <li>✗ <em>Zero cobros de servicio</em></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-teal-subtle/50 border border-teal-border rounded-xl text-xs text-teal-rich flex items-center gap-2.5">
+                  <i class="fa-solid fa-circle-check text-teal text-base"></i>
+                  <span><strong>Objetivo Logrado:</strong> Cero desuscripciones por spam cruzado y 40%+ de incremento en tasa de apertura estimada.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: EL DESAFÍO ESTRATÉGICO -->
+    <section id="desafio" class="py-16 bg-surface-raised border-y border-subtle relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-heading text-center max-w-3xl mx-auto mb-12">
+          <span class="section-kicker">Diagnóstico & Problemática</span>
+          <h2 class="section-title">El Desafío de Segmentar una Plataforma de Dos Caras</h2>
+          <p class="section-subtitle">
+            Gestionar a padres y niñeras en una sola lista de Mailchimp requiere una arquitectura de etiquetas estricta para evitar la pérdida de suscriptores y la fricción de marca.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          
+          <!-- Card 1: El Riesgo de Mezclar -->
+          <div class="feature-card electric-border border-red-soft">
+            <div class="space-y-3 flex-grow">
+              <div class="feature-icon bg-red-subtle text-red-600">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <h3 class="feature-title">El Riesgo del Cruce de Mensajes</h3>
+              <p class="feature-desc">
+                Si un padre recibe un correo con asuntos como <em>"¡Gana $25/hora este fin de semana cuidando niños!"</em>, la percepción de profesionalismo se deteriora y la tasa de desuscripción se dispara.
+              </p>
+            </div>
+            <div class="feature-footer text-xs font-mono text-red-600 bg-red-subtle/40 p-2.5 rounded-lg border border-red-200">
+              Consecuencia: Pérdida de LTV y reporte como Spam.
+            </div>
+          </div>
+
+          <!-- Card 2: La Solución con First-Party Data -->
+          <div class="feature-card electric-border border-teal-soft">
+            <div class="space-y-3 flex-grow">
+              <div class="feature-icon bg-teal-subtle text-teal">
+                <i class="fa-solid fa-tags"></i>
+              </div>
+              <h3 class="feature-title">Segmentación por Etiquetas & CRM</h3>
+              <p class="feature-desc">
+                Uso de campos dinámicos en el registro para clasificar de inmediato el rol, combinando tags de comportamiento transaccional (frecuencia, horarios y zonas metropolitanas de EE. UU.).
+              </p>
+            </div>
+            <div class="feature-footer text-xs font-mono text-teal-rich bg-teal-subtle/40 p-2.5 rounded-lg border border-teal-border">
+              Solución: Tags dinámicos + Grupos condicionales.
+            </div>
+          </div>
+
+          <!-- Card 3: Relevancia Operativa y Confianza -->
+          <div class="feature-card electric-border border-coral-soft">
+            <div class="space-y-3 flex-grow">
+              <div class="feature-icon bg-coral-subtle text-coral">
+                <i class="fa-solid fa-handshake-angle"></i>
+              </div>
+              <h3 class="feature-title">Foco en la Confianza Local</h3>
+              <p class="feature-desc">
+                La confianza se genera cuando la comunicación refleja exactamente el momento del usuario: seguridad y rapidez para la familia, e independencia financiera y flexibilidad para la niñera.
+              </p>
+            </div>
+            <div class="feature-footer text-xs font-mono text-coral-rich bg-coral-subtle/40 p-2.5 rounded-lg border border-coral-border">
+              Impacto: Conversión acelerada de reservas.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Showcase of Electric Card Component (Matching Reference Screenshot) -->
+        <div class="mt-14 pt-10 border-t border-subtle">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7 space-y-4">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-subtle text-xs font-mono font-semibold text-secondary">
+                <i class="fa-solid fa-bolt text-amber-500"></i> Componente Interactivo • React Bits
+              </span>
+              <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-main tracking-tight">
+                Electric Card: Borde de Plasma & Descarga Dinámica
+              </h3>
+              <p class="text-sm sm:text-base text-secondary leading-relaxed">
+                Integración de filtros SVG avanzados (<code>feTurbulence</code> + <code>feDisplacementMap</code>) con animación de ruido fractal a 24fps para generar contornos electrificados alrededor de los módulos de audiencia clave.
+              </p>
+              <div class="flex flex-wrap gap-3 pt-2">
+                <div class="p-3 bg-surface-base rounded-xl border border-subtle text-xs text-secondary flex items-center gap-2">
+                  <i class="fa-solid fa-check text-teal"></i>
+                  <span>Borde color gris/slate <code>#555965</code></span>
+                </div>
+                <div class="p-3 bg-surface-base rounded-xl border border-subtle text-xs text-secondary flex items-center gap-2">
+                  <i class="fa-solid fa-check text-teal"></i>
+                  <span>Jitter de arco de alta frecuencia</span>
+                </div>
+                <div class="p-3 bg-surface-base rounded-xl border border-subtle text-xs text-secondary flex items-center gap-2">
+                  <i class="fa-solid fa-check text-teal"></i>
+                  <span>Halo de plasma reactivo</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 flex justify-center">
+              <!-- Exact Electric Card Component from User Screenshot -->
+              <div class="featured-electric-card-container">
+                <div class="electric-card featured-electric-card">
+                  <div class="space-y-4">
+                    <span class="electric-badge-pill">FEATURED</span>
+                    <h3 class="font-display text-3xl font-extrabold text-white tracking-tight">Electric Card</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                      An electric border for shocking your users, the right way.
+                    </p>
+                  </div>
+                  
+                  <div class="space-y-4 pt-10">
+                    <div class="flex items-center gap-2">
+                      <span class="electric-tag-pill">Live</span>
+                      <span class="electric-tag-pill">v1.0</span>
+                    </div>
+                    <button class="electric-btn-primary" onclick="alert('⚡ Electric Border Activo: Efecto de plasma reactivo ejecutándose!')">
+                      Get Started
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: LAS 4 DIMENSIONES DE SEGMENTACIÓN -->
+    <section id="dimensiones" class="py-20 bg-base relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-heading text-center max-w-3xl mx-auto mb-14">
+          <span class="section-kicker">Metodología & Fuentes</span>
+          <h2 class="section-title">Matriz de Segmentación Multivariable</h2>
+          <p class="section-subtitle">
+            Análisis profundo de lo que se conoce, lo que se debe investigar y las fuentes y herramientas especializadas seleccionadas para el caso UrbanSitter.
+          </p>
+        </div>
+
+        <!-- Dimension Switcher Pills -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10" id="dimensionTabs">
+          <button class="dim-pill active" data-dim="demografico">
+            <i class="fa-solid fa-users"></i>
+            <span>1. Demográfico</span>
+          </button>
+          <button class="dim-pill" data-dim="geografico">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>2. Geográfico</span>
+          </button>
+          <button class="dim-pill" data-dim="psicografico">
+            <i class="fa-solid fa-brain"></i>
+            <span>3. Psicográfico</span>
+          </button>
+          <button class="dim-pill" data-dim="conductual">
+            <i class="fa-solid fa-arrow-pointer"></i>
+            <span>4. Conductual</span>
+          </button>
+        </div>
+
+        <!-- Dimension Dynamic Display Box -->
+        <div id="dimensionContent" class="dimension-detail-card">
+          <!-- Content dynamically rendered via app.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: LOS 4 SEGMENTOS IDENTIFICADOS -->
+    <section id="segmentos" class="py-20 bg-surface-raised border-t border-subtle relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-heading text-center max-w-3xl mx-auto mb-14">
+          <span class="section-kicker">Taxonomía Operativa</span>
+          <h2 class="section-title">Los 4 Segmentos de Audiencia Clave</h2>
+          <p class="section-subtitle">
+            Identificados estratégicamente según los objetivos de servicio de UrbanSitter para accionar campañas personalizadas en Mailchimp.
+          </p>
+        </div>
+
+        <!-- Segment Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Segment 1: Padres Recurrentes -->
+          <div class="segment-card electric-border group" data-segment-id="1">
+            <div class="segment-pill-tag bg-teal-subtle text-teal">Demanda Alta</div>
+            <div class="segment-avatar bg-teal-subtle text-teal">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h3 class="segment-name">1. Padres Recurrentes</h3>
+            <p class="segment-behavior">
+              <strong>Comportamiento:</strong> Reservan semanalmente (rutina laboral, citas fijas).
+            </p>
+            <div class="segment-strategy">
+              <div class="strategy-label"><i class="fa-solid fa-bullseye text-teal"></i> Estrategia Mailchimp:</div>
+              <p class="strategy-text">Correos enfocados en programas de lealtad, acceso prioritario a niñeras top y reservas en 1-click.</p>
+            </div>
+            <button class="btn-inspect-segment" onclick="openSegmentSimulator('padres_recurrentes')">
+              Simular Campaña <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+
+          <!-- Segment 2: Padres Ocasionales -->
+          <div class="segment-card electric-border group" data-segment-id="2">
+            <div class="segment-pill-tag bg-amber-100 text-amber-800">Demanda Estacional</div>
+            <div class="segment-avatar bg-amber-100 text-amber-700">
+              <i class="fa-solid fa-glass-cheers"></i>
+            </div>
+            <h3 class="segment-name">2. Padres Ocasionales</h3>
+            <p class="segment-behavior">
+              <strong>Comportamiento:</strong> Buscan cuidado en fechas especiales (San Valentín, Fin de Año, eventos).
+            </p>
+            <div class="segment-strategy">
+              <div class="strategy-label"><i class="fa-solid fa-bullseye text-amber-600"></i> Estrategia Mailchimp:</div>
+              <p class="strategy-text">Recordatorios estacionales anticipados, descuentos de reserva temprana y promociones puntuales.</p>
+            </div>
+            <button class="btn-inspect-segment" onclick="openSegmentSimulator('padres_ocasionales')">
+              Simular Campaña <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+
+          <!-- Segment 3: Niñeras Activas -->
+          <div class="segment-card electric-border group" data-segment-id="3">
+            <div class="segment-pill-tag bg-coral-subtle text-coral">Oferta Continua</div>
+            <div class="segment-avatar bg-coral-subtle text-coral">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h3 class="segment-name">3. Niñeras Activas</h3>
+            <p class="segment-behavior">
+              <strong>Comportamiento:</strong> Alta disponibilidad, perfil verificado y rápida velocidad de respuesta.
+            </p>
+            <div class="segment-strategy">
+              <div class="strategy-label"><i class="fa-solid fa-bullseye text-coral"></i> Estrategia Mailchimp:</div>
+              <p class="strategy-text">Reconocimiento, asignación de nuevas insignias de confianza, incentivos por horas pico y bonus de respuesta.</p>
+            </div>
+            <button class="btn-inspect-segment" onclick="openSegmentSimulator('nineras_activas')">
+              Simular Campaña <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+
+          <!-- Segment 4: Niñeras Esporádicas -->
+          <div class="segment-card electric-border group" data-segment-id="4">
+            <div class="segment-pill-tag bg-indigo-100 text-indigo-800">Oferta Temporal</div>
+            <div class="segment-avatar bg-indigo-100 text-indigo-700">
+              <i class="fa-solid fa-sun"></i>
+            </div>
+            <h3 class="segment-name">4. Niñeras Esporádicas</h3>
+            <p class="segment-behavior">
+              <strong>Comportamiento:</strong> Estudiantes o jóvenes que solo laboran en vacaciones de verano o recesos.
+            </p>
+            <div class="segment-strategy">
+              <div class="strategy-label"><i class="fa-solid fa-bullseye text-indigo-600"></i> Estrategia Mailchimp:</div>
+              <p class="strategy-text">Campañas de reactivación pre-temporada con proyección de ganancias y demanda en su vecindario.</p>
+            </div>
+            <button class="btn-inspect-segment" onclick="openSegmentSimulator('nineras_esporadicas')">
+              Simular Campaña <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SIMULADOR INTERACTIVO DE MAILCHIMP -->
+    <section id="simulador" class="py-20 bg-base relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-heading text-center max-w-3xl mx-auto mb-14">
+          <span class="section-kicker">Herramienta Interactiva</span>
+          <h2 class="section-title">Simulador de Campañas & Plantillas en Mailchimp</h2>
+          <p class="section-subtitle">
+            Experimenta en tiempo real cómo cambia el asunto, el mensaje, los tags de CRM y el llamado a la acción (CTA) según el segmento seleccionado.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Simulator Controls (Left 5 Cols) -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="sim-control-panel p-6 rounded-2xl bg-surface-raised border border-subtle shadow-sm space-y-5">
+              <div class="flex items-center justify-between border-b border-subtle pb-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-muted flex items-center gap-1.5">
+                  <i class="fa-brands fa-mailchimp text-amber-500 text-base"></i> Configuración de Campaña
+                </span>
+                <span class="badge-tag-status">Live Interactive</span>
+              </div>
+
+              <!-- Segment Selector Dropdown / Radio -->
+              <div class="space-y-2">
+                <label class="text-xs font-semibold text-main block">Selecciona el Segmento Objetivo:</label>
+                <div class="grid grid-cols-1 gap-2" id="simSegmentPills">
+                  <button class="sim-selector-btn active" data-campaign="padres_recurrentes">
+                    <span class="indicator-dot dot-teal"></span>
+                    <span class="text-left font-medium">1. Padres Recurrentes (Lealtad)</span>
+                  </button>
+                  <button class="sim-selector-btn" data-campaign="padres_ocasionales">
+                    <span class="indicator-dot dot-amber"></span>
+                    <span class="text-left font-medium">2. Padres Ocasionales (Estacional)</span>
+                  </button>
+                  <button class="sim-selector-btn" data-campaign="nineras_activas">
+                    <span class="indicator-dot dot-coral"></span>
+                    <span class="text-left font-medium">3. Niñeras Activas (Incentivos)</span>
+                  </button>
+                  <button class="sim-selector-btn" data-campaign="nineras_esporadicas">
+                    <span class="indicator-dot dot-indigo"></span>
+                    <span class="text-left font-medium">4. Niñeras Esporádicas (Reactivación)</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Dynamic Tags Preview -->
+              <div class="space-y-2 pt-2 border-t border-subtle">
+                <label class="text-xs font-semibold text-main flex items-center justify-between">
+                  <span>Reglas de Segmentación en CRM:</span>
+                  <span class="text-[11px] font-mono text-muted">Mailchimp Query</span>
+                </label>
+                <div class="p-3 bg-surface-base rounded-xl border border-subtle font-mono text-xs text-secondary space-y-1" id="simRuleBox">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+
+              <!-- Estimated Metrics of this Segment -->
+              <div class="grid grid-cols-2 gap-3 pt-1">
+                <div class="p-3 bg-surface-base rounded-xl border border-subtle text-center">
+                  <span class="text-[11px] text-muted uppercase font-bold block">Open Rate Est.</span>
+                  <span class="text-xl font-extrabold text-teal font-display" id="simOpenRate">48.2%</span>
+                </div>
+                <div class="p-3 bg-surface-base rounded-xl border border-subtle text-center">
+                  <span class="text-[11px] text-muted uppercase font-bold block">Click Rate Est.</span>
+                  <span class="text-xl font-extrabold text-coral font-display" id="simClickRate">18.5%</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Email Live Preview Mockup (Right 7 Cols) -->
+          <div class="lg:col-span-7">
+            <div class="email-mockup-frame">
+              
+              <!-- Mockup Window Chrome -->
+              <div class="email-header-bar flex items-center justify-between px-4 py-3 bg-slate-900 text-slate-300 rounded-t-2xl border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                  <span class="window-dot dot-red"></span>
+                  <span class="window-dot dot-yellow"></span>
+                  <span class="window-dot dot-green"></span>
+                  <span class="text-xs font-mono text-slate-400 ml-2">Inbox Preview • UrbanSitter Newsletter</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                  <span class="text-slate-400"><i class="fa-regular fa-envelope"></i> HTML Email</span>
+                </div>
+              </div>
+
+              <!-- Email Metadata Bar -->
+              <div class="email-meta-box p-4 bg-surface-raised border-b border-subtle text-xs space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-muted font-medium">De:</span>
+                  <span class="text-main font-semibold">UrbanSitter Concierge &lt;updates@urbansitter.com&gt;</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-muted font-medium">Para:</span>
+                  <span class="text-secondary font-mono" id="emailRecipient">padre.activo@family.com</span>
+                </div>
+                <div class="flex items-start justify-between gap-2 pt-1 border-t border-subtle">
+                  <span class="text-muted font-medium">Asunto:</span>
+                  <span class="text-main font-bold text-sm" id="emailSubject">Tu niñera favorita tiene horas disponibles este viernes 🎉</span>
+                </div>
+              </div>
+
+              <!-- Email Body Interactive Canvas -->
+              <div class="email-body-content p-6 sm:p-8 bg-white text-slate-900 space-y-6" id="emailBody">
+                <!-- Injected dynamically via JS -->
+              </div>
+
+              <!-- Email Footer -->
+              <div class="email-mockup-footer p-4 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 text-center rounded-b-2xl">
+                UrbanSitter Inc. • San Francisco, CA • Estás recibiendo este correo porque tu perfil coincide con el segmento verificado.
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: DATA VISUALIZATION & MÉTRICAS DE MERCADO -->
+    <section id="dataviz" class="py-20 bg-surface-raised border-t border-subtle relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-heading text-center max-w-3xl mx-auto mb-14">
+          <span class="section-kicker">Data Visualization</span>
+          <h2 class="section-title">Visualización de Datos & Rendimiento CRM</h2>
+          <p class="section-subtitle">
+            Representación gráfica de la distribución de la audiencia bilateral y el impacto comparativo de la segmentación en métricas de conversión.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          
+          <!-- Chart 1: Proporción de la Base de Datos (5 Cols) -->
+          <div class="lg:col-span-5 p-6 rounded-2xl bg-surface-base border border-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-display font-bold text-base text-main">Distribución de Segmentos</h3>
+                <span class="text-xs font-mono text-muted">100% Base Total</span>
+              </div>
+              <p class="text-xs text-secondary mb-6">
+                Proporción estimada en la base unificada de UrbanSitter entre demanda recurrente/ocasional y oferta activa/esporádica.
+              </p>
+
+              <!-- Interactive Donut / Segment Bars -->
+              <div class="space-y-4" id="distributionBars">
+                <div class="space-y-1.5">
+                  <div class="flex justify-between text-xs font-medium">
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-teal"></span> Padres Recurrentes</span>
+                    <span class="font-mono font-bold">38%</span>
+                  </div>
+                  <div class="w-full bg-surface-raised h-2.5 rounded-full overflow-hidden">
+                    <div class="bg-teal h-full rounded-full" style="width: 38%"></div>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex justify-between text-xs font-medium">
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Padres Ocasionales</span>
+                    <span class="font-mono font-bold">24%</span>
+                  </div>
+                  <div class="w-full bg-surface-raised h-2.5 rounded-full overflow-hidden">
+                    <div class="bg-amber-500 h-full rounded-full" style="width: 24%"></div>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex justify-between text-xs font-medium">
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-coral"></span> Niñeras Activas</span>
+                    <span class="font-mono font-bold">22%</span>
+                  </div>
+                  <div class="w-full bg-surface-raised h-2.5 rounded-full overflow-hidden">
+                    <div class="bg-coral h-full rounded-full" style="width: 22%"></div>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="flex justify-between text-xs font-medium">
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span> Niñeras Esporádicas</span>
+                    <span class="font-mono font-bold">16%</span>
+                  </div>
+                  <div class="w-full bg-surface-raised h-2.5 rounded-full overflow-hidden">
+                    <div class="bg-indigo-500 h-full rounded-full" style="width: 16%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Insight Pill -->
+            <div class="mt-8 p-3.5 bg-teal-subtle rounded-xl border border-teal-border text-xs text-teal-rich flex items-center gap-3">
+              <i class="fa-solid fa-chart-pie text-lg text-teal"></i>
+              <span><strong>Dato Clave:</strong> El 62% del volumen total corresponde al bloque de demanda familiar en zonas metropolitanas de alto poder adquisitivo.</span>
+            </div>
+          </div>
+
+          <!-- Chart 2: Comparativa de Rendimiento con vs sin Segmentación (7 Cols) -->
+          <div class="lg:col-span-7 p-6 rounded-2xl bg-surface-base border border-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-display font-bold text-base text-main">Impacto de la Segmentación en Mailchimp</h3>
+                <span class="badge-status-live">A/B Benchmark</span>
+              </div>
+              <p class="text-xs text-secondary mb-6">
+                Comparativa entre envíos masivos indiscriminados (Batch & Blast) vs. Campañas con tags dinámicos y personalización por rol.
+              </p>
+
+              <!-- Comparison Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                
+                <!-- Metric 1: Open Rate -->
+                <div class="metric-compare-card">
+                  <span class="text-xs font-bold text-muted uppercase">Tasa de Apertura</span>
+                  <div class="flex items-baseline gap-2 mt-2">
+                    <span class="text-2xl font-extrabold text-teal font-display">46.5%</span>
+                    <span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-arrow-trend-up"></i> +162%</span>
+                  </div>
+                  <div class="text-[11px] text-muted mt-1">vs. 17.8% sin segmentar</div>
+                  <div class="comparison-bar-track mt-3">
+                    <div class="bar-fill bg-teal" style="width: 85%"></div>
+                  </div>
+                </div>
+
+                <!-- Metric 2: Click-to-Book Conversion -->
+                <div class="metric-compare-card">
+                  <span class="text-xs font-bold text-muted uppercase">Conversión a Reserva</span>
+                  <div class="flex items-baseline gap-2 mt-2">
+                    <span class="text-2xl font-extrabold text-coral font-display">12.4%</span>
+                    <span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-arrow-trend-up"></i> +210%</span>
+                  </div>
+                  <div class="text-[11px] text-muted mt-1">vs. 4.0% genérico</div>
+                  <div class="comparison-bar-track mt-3">
+                    <div class="bar-fill bg-coral" style="width: 70%"></div>
+                  </div>
+                </div>
+
+                <!-- Metric 3: Unsubscribe Rate -->
+                <div class="metric-compare-card">
+                  <span class="text-xs font-bold text-muted uppercase">Desuscripciones</span>
+                  <div class="flex items-baseline gap-2 mt-2">
+                    <span class="text-2xl font-extrabold text-emerald-600 font-display">0.18%</span>
+                    <span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-arrow-trend-down"></i> -88%</span>
+                  </div>
+                  <div class="text-[11px] text-muted mt-1">vs. 1.52% al mezclar roles</div>
+                  <div class="comparison-bar-track mt-3">
+                    <div class="bar-fill bg-emerald-500" style="width: 15%"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Claritas & We Are Social Methodology Note -->
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div class="p-3 bg-surface-raised rounded-xl border border-subtle flex items-start gap-2.5">
+                <i class="fa-solid fa-location-crosshairs text-teal mt-0.5"></i>
+                <div>
+                  <strong>Claritas ZIP Code Look-up:</strong>
+                  <p class="text-muted text-[11px] mt-0.5">Permite aislar códigos postales metropolitanos de alto valor frente a clústeres estudiantiles.</p>
+                </div>
+              </div>
+              <div class="p-3 bg-surface-raised rounded-xl border border-subtle flex items-start gap-2.5">
+                <i class="fa-solid fa-globe text-coral mt-0.5"></i>
+                <div>
+                  <strong>We Are Social (Digital 2026):</strong>
+                  <p class="text-muted text-[11px] mt-0.5">Valida los hábitos de consumo móvil y redes sociales predilectas para captación.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: CONCLUSIONES & VALOR ESTRATÉGICO -->
+    <section id="conclusiones" class="py-20 bg-base relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-heading text-center max-w-3xl mx-auto mb-14">
+          <span class="section-kicker">Síntesis Ejecutiva</span>
+          <h2 class="section-title">Conclusiones del Estudio de Segmentación</h2>
+          <p class="section-subtitle">
+            Por qué segmentar esta base de datos es vital para la viabilidad operativa y la eficiencia comercial de UrbanSitter.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Conclusion 1: Relevancia Operativa -->
+          <div class="conclusion-box group">
+            <div class="conclusion-number font-display">01</div>
+            <div class="conclusion-icon-wrap bg-teal-subtle text-teal">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+            <h3 class="conclusion-title">Relevancia Operativa Absoluta</h3>
+            <p class="conclusion-desc">
+              Segmentar la base de datos es la base de la supervivencia del marketplace. Permite mantener dos audiencias con intereses opuestos sincronizadas en la misma plataforma sin interferencias ni deserciones.
+            </p>
+          </div>
+
+          <!-- Conclusion 2: Agilidad en Conversión -->
+          <div class="conclusion-box group">
+            <div class="conclusion-number font-display">02</div>
+            <div class="conclusion-icon-wrap bg-coral-subtle text-coral">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h3 class="conclusion-title">Conversión Acelerada de Reservas</h3>
+            <p class="conclusion-desc">
+              El servicio es exponencialmente más eficiente cuando personaliza el mensaje de Mailchimp con ofertas contextuales (urgencia de fin de semana para padres o turnos remunerados para niñeras).
+            </p>
+          </div>
+
+          <!-- Conclusion 3: Construcción de Confianza -->
+          <div class="conclusion-box group">
+            <div class="conclusion-number font-display">03</div>
+            <div class="conclusion-icon-wrap bg-amber-100 text-amber-700">
+              <i class="fa-solid fa-shield-heart"></i>
+            </div>
+            <h3 class="conclusion-title">Construcción de Confianza de Marca</h3>
+            <p class="conclusion-desc">
+              Fomenta la lealtad y la tranquilidad de las familias al demostrar que la marca comprende el rol y las prioridades de cada usuario, protegiendo la reputación comunitaria del servicio.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Academic Quote Box -->
+        <div class="mt-14 p-8 rounded-3xl bg-surface-raised border border-subtle relative overflow-hidden text-center max-w-4xl mx-auto">
+          <i class="fa-solid fa-quote-left text-teal/20 text-5xl absolute top-4 left-6"></i>
+          <p class="text-base sm:text-lg text-main font-medium italic relative z-10 max-w-2xl mx-auto">
+            "Segmentar esta base de datos es vital para la relevancia operativa. El servicio es más eficiente cuando personaliza el mensaje de Mailchimp, ya que agiliza la conversión de reservas en la plataforma y fomenta la confianza al demostrar que la marca entiende el rol de cada usuario."
+          </p>
+          <div class="mt-4 flex items-center justify-center gap-3 relative z-10">
+            <div class="w-9 h-9 rounded-full bg-teal-subtle text-teal flex items-center justify-center font-bold text-sm">VR</div>
+            <div class="text-left">
+              <div class="text-sm font-bold text-main">Valentina Ramirez Lozano</div>
+              <div class="text-xs text-muted">Pontificia Universidad Javeriana Cali • Módulo 3</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-surface-raised border-t border-subtle py-12 text-secondary text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="brand-logo-container scale-90">
+          <span class="brand-u">U</span>
+          <span class="brand-dot"></span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-main">UrbanSitter Audience Intelligence</span>
+          <span class="text-xs text-muted">Proyecto Académico Javeriana Cali • 2026</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 text-xs text-muted">
+        <a href="#hero" class="hover:text-teal transition-colors">Inicio</a>
+        <a href="#dimensiones" class="hover:text-teal transition-colors">Dimensiones</a>
+        <a href="#segmentos" class="hover:text-teal transition-colors">Segmentos</a>
+        <a href="#simulador" class="hover:text-teal transition-colors">Simulador</a>
+        <a href="#conclusiones" class="hover:text-teal transition-colors">Conclusiones</a>
+      </div>
+
+      <div class="text-xs text-muted">
+        Desarrollado con estándares <strong>Impeccable</strong> & <strong>Design Engineering</strong>.
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: FICHA TÉCNICA ACADÉMICA -->
+  <div id="docModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card max-w-2xl w-full mx-4 max-h-[90vh] flex flex-col">
+      
+      <div class="modal-header p-6 border-b border-subtle flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-teal-subtle text-teal flex items-center justify-center font-bold text-lg">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>
+            <h3 id="modalTitle" class="font-display font-bold text-lg text-main">Ficha Técnica Académica - Módulo 3</h3>
+            <p class="text-xs text-muted">Plantilla de Segmentación de Audiencias Digitales</p>
+          </div>
+        </div>
+        <button id="btnCloseDocModal" class="text-muted hover:text-main p-2 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body p-6 overflow-y-auto space-y-6 text-sm text-secondary">
+        <div class="grid grid-cols-2 gap-4 p-4 bg-surface-base rounded-xl border border-subtle text-xs">
+          <div><strong>Estudiante:</strong> Valentina Ramirez Lozano</div>
+          <div><strong>Fecha:</strong> 7 de septiembre del 2026</div>
+          <div><strong>Institución:</strong> Pontificia Universidad Javeriana Cali</div>
+          <div><strong>Servicio:</strong> UrbanSitter (urbansitter.com)</div>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="font-bold text-main flex items-center gap-2">
+            <i class="fa-solid fa-bullseye text-teal"></i> Descripción del Servicio
+          </h4>
+          <p class="text-xs leading-relaxed bg-surface-base p-3.5 rounded-xl border border-subtle">
+            Plataforma digital que conecta a padres de familia con niñeras de confianza en su red local, facilitando la búsqueda, reserva y el pago de servicios de cuidado infantil a través de recomendaciones de la comunidad.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="font-bold text-main flex items-center gap-2">
+            <i class="fa-solid fa-triangle-exclamation text-coral"></i> Desafío de Segmentación (Mailchimp)
+          </h4>
+          <p class="text-xs leading-relaxed bg-surface-base p-3.5 rounded-xl border border-subtle">
+            El reto principal con Mailchimp es gestionar una plataforma de "dos caras" (padres y niñeras) en una misma base de datos. Se requiere enviar comunicaciones radicalmente distintas sin cruzar información (ej. no enviar ofertas de empleo a los padres), para mantener altas tasas de apertura y evitar desuscripciones.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="font-bold text-main flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-indigo-500"></i> Resumen de los 4 Segmentos
+          </h4>
+          <ul class="text-xs space-y-2 bg-surface-base p-3.5 rounded-xl border border-subtle">
+            <li><strong>1. Padres recurrentes:</strong> Reservan semanalmente; requieren correos enfocados en lealtad.</li>
+            <li><strong>2. Padres ocasionales:</strong> Buscan cuidado en fechas especiales (San Valentín, fin de año); necesitan recordatorios estacionales.</li>
+            <li><strong>3. Niñeras activas:</strong> Alta disponibilidad; responden bien a incentivos y nuevas insignias.</li>
+            <li><strong>4. Niñeras esporádicas:</strong> Trabajan solo en verano; requieren reactivación.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-footer p-4 border-t border-subtle bg-surface-raised flex items-center justify-between">
+        <span class="text-xs text-muted">Documento oficial de entrega • Javeriana Cali</span>
+        <button onclick="window.print()" class="btn-secondary text-xs py-2 px-4 flex items-center gap-2">
+          <i class="fa-solid fa-print"></i> Imprimir / Guardar PDF
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+  <script src="electric-border.js"></script>
+  <script src="ballpit.js"></script>
+</body>
+</html>
