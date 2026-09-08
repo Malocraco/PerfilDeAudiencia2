@@ -43,6 +43,11 @@
   --shadow-lg: 0 12px 28px -4px rgba(18, 38, 48, 0.08), 0 4px 12px -2px rgba(18, 38, 48, 0.04);
   --shadow-xl: 0 20px 40px -8px rgba(18, 38, 48, 0.12);
 
+  /* Professional Typography System (Impeccable & Taste-Skill) */
+  --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Geist', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', 'SF Mono', monospace;
+
   /* Emil Kowalski Spring Curves */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 150ms;
@@ -65,10 +70,11 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   background-color: var(--bg-base);
   color: var(--text-main);
-  line-height: 1.6;
+  line-height: 1.62;
+  letter-spacing: -0.011em;
   overflow-x: hidden !important;
   max-width: 100%;
   width: 100%;
@@ -78,11 +84,13 @@ body {
 }
 
 .font-display {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
+  letter-spacing: -0.015em;
 }
 
 /* Brand Logo Styling */
@@ -105,7 +113,7 @@ body {
 }
 
 .brand-u {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 20px;
   line-height: 1;
@@ -504,11 +512,11 @@ body {
 }
 
 .section-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 38px);
   font-weight: 800;
   color: var(--text-main);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.2;
 }
 
@@ -556,7 +564,7 @@ body {
 .bg-red-subtle { background: oklch(0.96 0.04 25); }
 
 .feature-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
   color: var(--text-main);
@@ -667,10 +675,11 @@ body {
 }
 
 .segment-name {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-display);
   font-size: 17px;
   font-weight: 800;
   color: var(--text-main);
+  letter-spacing: -0.02em;
   margin-bottom: 8px;
 }
 
@@ -846,10 +855,11 @@ body {
 }
 
 .conclusion-title {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-display);
   font-size: 18px;
   font-weight: 800;
   color: var(--text-main);
+  letter-spacing: -0.02em;
   margin-bottom: 8px;
 }
 
